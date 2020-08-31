@@ -1,0 +1,61 @@
+-- AS statement
+-- AS statement is exicuted at the end of the query
+SELECT SUM(amount) AS net_revenue
+FROM payment;
+
+SELECT COUNT(amount) AS num_transaction
+FROM payment;
+
+SELECT customer_id, SUM(amount) AS total_spent
+FROM payment
+GROUP BY customer_id;
+
+SELECT customer_id, COUNT(amount) AS total_spent
+FROM payment
+GROUP BY customer_id;
+
+-- INNER JOINT
+-- INNER JOINT joins the records which are common(a match) in both tables
+SELECT payment_id, payment.customer_id, first_name, email FROM payment
+INNER JOIN customer
+ON payment.customer_id = customer.customer_id
+ORDER BY first_name;
+
+--OUTER JOIN
+-- FULL OUTER JOIN 
+SELECT * FROM payment
+FULL OUTER JOIN customer
+ON payment.customer_id = customer.customer_id
+WHERE customer.customer_id IS null
+OR payment.payment_id IS null;
+
+-- LEFT OUTER JOIN
+SELECT film.film_id, inventory_id FROM film
+LEFT OUTER JOIN inventory
+ON inventory.film_id = film.film_id;
+
+SELECT film_id, COUNT(inventory_id) AS no_of_inventory FROM inventory
+GROUP BY film_id
+ORDER BY film_id;
+
+SELECT film.film_id, film.title, COUNT(inventory_id) AS no_of_inventory FROM film
+LEFT OUTER JOIN inventory
+ON inventory.film_id = film.film_id
+GROUP BY film.film_id
+ORDER BY film_id;
+
+-- JOIN challenge
+SELECT * FROM address;
+SELECT customer_id, first_name, district, email from customer
+INNER JOIN address
+ON customer.address_id = address.address_id
+WHERE district = 'California'
+ORDER BY customer_id;
+
+SELECT title, first_name, last_name FROM film
+INNER JOIN film_actor
+ON film.film_id = film_actor.film_id
+INNER JOIN actor
+ON film_actor.actor_id = actor.actor_id
+WHERE first_name = 'Nick' AND last_name = 'Wahlberg';
+

@@ -1,0 +1,19 @@
+-- Constraints (Column)
+-- NOT NULL : ensures that column cannot have null value.
+-- UNIQUE : ensures all the values in the column are different.
+-- PRIMARY KEY : uniquely identifies each row/record in a database table.
+-- FOREIGN KEY : constrains data based on column in other tables.
+-- CHECK : ensures that all value in a column satisfy certain conditions.
+-- EXCLUSION : ensures that if any two rows are compared on the speicific column or
+--             expression using the specified operators, not all of these comparisons
+--			   will return TRUE
+
+-- Constraints (Table)
+-- CHECK(condition) : to check a condition when inserting or updating data
+-- REFERENCE : to constrain the value stored in the column that must exist in a 
+-- 			   column in another table
+-- UNIQUE(column_list) : forces the values stored in the columns listed inside the
+-- 						 parentheses to be unique
+-- PRIMARY KEY(column_list) : allows you to define the primary key that consists of
+-- 							  multiple columns
+

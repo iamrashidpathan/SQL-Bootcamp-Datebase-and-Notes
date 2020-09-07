@@ -1,0 +1,95 @@
+--CASE
+SELECT * FROM customer;
+SELECT customer_id,
+CASE
+	WHEN (customer_id <= 100) THEN 'Premium'
+	WHEN (customer_id BETWEEN 100 AND 200) THEN 'Plus'
+	ELSE 'Normal'
+END 
+AS customer_class
+FROM customer;
+
+SELECT customer_id,
+CASE customer_id
+	WHEN 2 THEN 'Winner'
+	WHEN 5 THEN 'Runnerup'
+	ELSE 'Thanks for participation'
+END
+AS lottery_result
+FROM customer;
+
+SELECT
+SUM(CASE rental_rate
+	WHEN 0.99 THEN 1
+	ELSE 0
+END) AS bargains,
+
+SUM(CASE rental_rate
+	WHEN 2.99 THEN 1
+	ELSE 0
+END) AS regular,
+
+SUM(CASE rental_rate
+	WHEN 4.99 THEN 1
+	ELSE 0
+END) AS premium
+FROM film;
+
+-- CASE challenge
+SELECT
+SUM(CASE rating
+	WHEN 'R' THEN 1
+	ELSE 0
+END) AS r,
+
+SUM(CASE rating
+	WHEN 'PG' THEN 1
+	ELSE 0
+END) AS pg,
+
+SUM(CASE rating
+	WHEN 'PG-13' THEN 1
+	ELSE 0
+END) AS pg13
+FROM film;
+
+-- COALESCE 
+-- returns the first non null value
+-- COALESCE(item,0)
+-- returns 0 if item is null
+
+-- CAST
+-- it let us convert from one data type to other
+-- convert musy be reasonable and possible
+SELECT CAST('5' AS INTEGER) AS new_int;
+SELECT '5'::INTEGER AS short;
+
+SELECT * FROM rental;
+SELECT CHAR_LENGTH(CAST (inventory_id AS VARCHAR)) 
+FROM rental;
+
+-- NULLIF
+-- it takes 2 input and return NULL if both are equal
+-- else returns the first argument
+-- CREATE TABLE depts(
+-- 	first_name VARCHAR(50),
+-- 	last_name VARCHAR(50)
+-- )
+-- ALTER TABLE depts
+-- RENAME COLUMN last_name TO department;
+-- SELECT * FROM depts;
+
+-- INSERT INTO depts(first_name, department)
+-- VALUES
+-- ('jimmy','A'),
+-- ('rimmy','A'),
+-- ('raffa','B');
+-- SELECT * FROM depts;
+
+-- SELECT
+-- SUM(CASE WHEN department = 'A' THEN 1 ELSE 0 END) /
+-- NULLIF (SUM (CASE WHEN department = 'B' THEN 1 ELSE 0 END),0)
+-- AS department_ratio
+-- FROM depts;
+
+-- DROP TABLE depts;
